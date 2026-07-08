@@ -1,0 +1,8 @@
+scapy
+flask
+jinja2
+python-nmap
+requests
+reportlab
+pytest
+python-dotenv
