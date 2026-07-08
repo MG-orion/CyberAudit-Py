@@ -1,5 +1,7 @@
 from scapy.all import ARP, Ether, srp
 import logging
+import json
+import os
 
 
 logger = logging.getLogger("CyberAudit")
@@ -57,3 +59,26 @@ def scan_network(network):
 
 
     return devices
+
+#pour la sauvegarde des résultats du scan dans un fichier JSON
+def save_results(results):
+
+    os.makedirs(
+        "database",
+        exist_ok=True
+    )
+    
+    with open(
+        "database/network_results.json",
+        "w"
+    ) as file:
+
+        json.dump(
+            results,
+            file,
+            indent=4
+        )
+
+    logger.info(
+        "Résultats sauvegardés dans network_results.json"
+    )
