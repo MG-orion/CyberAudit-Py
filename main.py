@@ -1,19 +1,39 @@
 from modules.logger import setup_logger
+from modules.network_scanner import scan_network
 
 
 def main():
-    logger = setup_logger()
-    logger.info(
-        "Démarrage de CyberAudit-Py"
+
+    setup_logger()
+
+
+    print("""
+    ==========================
+       CyberAudit-Py
+    ==========================
+    """)
+
+
+    network=input(
+        "Entrer le réseau à scanner : "
     )
-    print(
-        """
-        ==========================
-          CyberAudit-Py
-          Security Scanner
-        ==========================
-        """
-    )
+
+
+    results = scan_network(network)
+
+
+    print("\nMachines détectées :")
+
+
+    for device in results:
+
+        print(
+            f"""
+            IP  : {device['ip']}
+            MAC : {device['mac']}
+            """
+        )
+
 
 
 if __name__ == "__main__":
